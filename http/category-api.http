@@ -1,0 +1,61 @@
+### 게시판 카테고리 등록
+POST http://localhost:8080/api/v1/categories
+Content-Type: application/json
+
+{
+  "title": "카테고리",
+  "userToken": "[사용자토큰]",
+  "visible": true
+}
+
+> {%
+//response handler
+client.global.set("categoryToken", response.body.data.token);
+client.log(client.global.get("categoryToken"));
+%}
+
+### 게시판 카테고리 복수 조회
+GET http://localhost:8080/api/v1/categories
+Content-Type: application/json
+
+### 게시판 카테고리 단일 조회
+GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 수정
+PUT http://localhost:8080/api/v1/categories
+Content-Type: application/json
+
+{
+  "title": "CATEGORY",
+  "token": "{{categoryToken}}",
+  "visible": true
+}
+
+### 게시판 카테고리 삭제
+DELETE http://localhost:8080/api/v1/categories/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 삭제 목록 조회
+GET http://localhost:8080/api/v1/categories/deleted
+Content-Type: application/json
+
+### 게시판 카테고리 복구
+PUT http://localhost:8080/api/v1/categories/restore/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 공개 설정
+PUT http://localhost:8080/api/v1/categories/enable/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 단일 조회 - 공개 확인
+GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 비공개 설정
+PUT http://localhost:8080/api/v1/categories/disable/{{categoryToken}}
+Content-Type: application/json
+
+### 게시판 카테고리 단일 조회 - 비공개 확인
+GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+Content-Type: application/json
