@@ -1,5 +1,5 @@
 ### 게시판 카테고리 등록
-POST http://localhost:8080/api/v1/categories
+POST http://localhost:8081/pb-board/api/v1/categories
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ client.log(client.global.get("categoryToken"));
 %}
 
 ### 게시물 등록 1
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8081/pb-board/api/v1/articles
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### 게시물 등록 2
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8081/pb-board/api/v1/articles
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ### 게시물 등록 3
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8081/pb-board/api/v1/articles
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 }
 
 ### 게시물 등록 4
-POST http://localhost:8080/api/v1/articles
+POST http://localhost:8081/pb-board/api/v1/articles
 Content-Type: application/json
 
 {
@@ -69,22 +69,22 @@ client.log(client.global.get("articleToken"));
 %}
 
 ### 페이징네이션 검색 : PG=1 & SZ=2
-GET http://localhost:8080/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}
 
 ### 페이징네이션 검색 : PG=2 & SZ=2
-GET http://localhost:8080/api/v1/articles?pg=2&sz=2&ctgTk={{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/articles?pg=2&sz=2&ctgTk={{categoryToken}}
 
 ### 페이징네이션 단어 검색 (1) : PG=1 & SZ=2 & SB=1 & ST = mTE
-GET http://localhost:8080/api/v1/articles?pg=1&sz=2&st=mTE&sb=1
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=2&st=mTE&sb=1
 
 ### 페이징네이션 단어 검색 (2) : PG=1 & SZ=2 & SB=2 & ST = 뭉탱이
-GET http://localhost:8080/api/v1/articles?pg=1&sz=2&st=뭉탱이&sb=1
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=2&st=뭉탱이&sb=1
 
 ### 페이징네이션 정렬 검색 : PG=1 & SZ=3 & OB=1
-GET http://localhost:8080/api/v1/articles?pg=1&sz=3&ob=1&ctgTk={{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=3&ob=1&ctgTk={{categoryToken}}
 
 ### 게시물 수정
-PUT http://localhost:8080/api/v1/articles
+PUT http://localhost:8081/pb-board/api/v1/articles
 Content-Type: application/json
 
 {
@@ -95,34 +95,34 @@ Content-Type: application/json
 }
 
 ### 게시물 비공개 설정
-PUT http://localhost:8080/api/v1/articles/disable/{{articleToken}}
+PUT http://localhost:8081/pb-board/api/v1/articles/disable/{{articleToken}}
 
 ### 게시물 단일 조회 (비공개 나오는 여부 체크)
-GET http://localhost:8080/api/v1/articles/{{articleToken}}
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 
 ### 페이징네이션 검색 : PG=1 & SZ=2 & SECRET = true
-GET http://localhost:8080/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}&secret=true
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}&secret=true
 
 ### 게시물 공개 설정
-PUT http://localhost:8080/api/v1/articles/enable/{{articleToken}}
+PUT http://localhost:8081/pb-board/api/v1/articles/enable/{{articleToken}}
 
 ### 게시물 단일 조회 (공개 나오는 여부 체크)
-GET http://localhost:8080/api/v1/articles/{{articleToken}}
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 
-### 페이징네이션 검색 : PG=1 & SZ=2 & SECRET = true
-GET http://localhost:8080/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}&secret=true
+### 페이징네이션 검색 : PG=1 & SZ=2 & SECRET = false (공개 나오는 여부 체크)
+GET http://localhost:8081/pb-board/api/v1/articles?pg=1&sz=2&ctgTk={{categoryToken}}&secret=false
 
 ### 게시물 삭제
-DELETE http://localhost:8080/api/v1/articles/{{articleToken}}
+DELETE http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 
 ### 게시물 단일 조회 (삭제 이후 안 나오는 거 체크)
-GET http://localhost:8080/api/v1/articles/{{articleToken}}
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 
 ### 삭제 목록 조회
-GET http://localhost:8080/api/v1/articles/deleted
+GET http://localhost:8081/pb-board/api/v1/articles/deleted
 
 ### 게시물 복구
-PUT http://localhost:8080/api/v1/articles/restore/{{articleToken}}
+PUT http://localhost:8081/pb-board/api/v1/articles/restore/{{articleToken}}
 
 ### 게시물 단일 조회 (복구 이후 나오는 여부 체크)
-GET http://localhost:8080/api/v1/articles/{{articleToken}}
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}

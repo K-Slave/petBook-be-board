@@ -1,5 +1,5 @@
 ### 게시판 카테고리 등록
-POST http://localhost:8080/api/v1/categories
+POST http://localhost:8081/pb-board/api/v1/categories
 Content-Type: application/json
 
 {
@@ -15,15 +15,15 @@ client.log(client.global.get("categoryToken"));
 %}
 
 ### 게시판 카테고리 복수 조회
-GET http://localhost:8080/api/v1/categories
+GET http://localhost:8081/pb-board/api/v1/categories
 Content-Type: application/json
 
 ### 게시판 카테고리 단일 조회
-GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/categories/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 수정
-PUT http://localhost:8080/api/v1/categories
+PUT http://localhost:8081/pb-board/api/v1/categories
 Content-Type: application/json
 
 {
@@ -33,29 +33,29 @@ Content-Type: application/json
 }
 
 ### 게시판 카테고리 삭제
-DELETE http://localhost:8080/api/v1/categories/{{categoryToken}}
+DELETE http://localhost:8081/pb-board/api/v1/categories/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 삭제 목록 조회
-GET http://localhost:8080/api/v1/categories/deleted
+GET http://localhost:8081/pb-board/api/v1/categories/deleted
 Content-Type: application/json
 
 ### 게시판 카테고리 복구
-PUT http://localhost:8080/api/v1/categories/restore/{{categoryToken}}
+PUT http://localhost:8081/pb-board/api/v1/categories/restore/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 공개 설정
-PUT http://localhost:8080/api/v1/categories/enable/{{categoryToken}}
+PUT http://localhost:8081/pb-board/api/v1/categories/enable/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 단일 조회 - 공개 확인
-GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/categories/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 비공개 설정
-PUT http://localhost:8080/api/v1/categories/disable/{{categoryToken}}
+PUT http://localhost:8081/pb-board/api/v1/categories/disable/{{categoryToken}}
 Content-Type: application/json
 
 ### 게시판 카테고리 단일 조회 - 비공개 확인
-GET http://localhost:8080/api/v1/categories/{{categoryToken}}
+GET http://localhost:8081/pb-board/api/v1/categories/{{categoryToken}}
 Content-Type: application/json

@@ -85,7 +85,7 @@ public class ArticleInfo {
     @Getter
     @Builder
     public static class Paginate {
-        private final List<Brief> data;
+        private final List<Brief> briefs;
         private final Long total;
         private final Long pages;
         private final Long current;

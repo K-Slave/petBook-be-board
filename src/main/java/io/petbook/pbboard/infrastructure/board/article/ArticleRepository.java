@@ -107,8 +107,8 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
         } else {
             articles =
                     hasCtgTk ?
-                            findAll(visibleStatus, pageRequest) :
-                            findAllWithCategory(visibleStatus, paginate.getCtgTk(), pageRequest);
+                            findAllWithCategory(visibleStatus, paginate.getCtgTk(), pageRequest) :
+                            findAll(visibleStatus, pageRequest);
         }
 
         // [Kang] 결과물 반환

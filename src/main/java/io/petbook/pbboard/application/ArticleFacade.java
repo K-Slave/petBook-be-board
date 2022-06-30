@@ -55,11 +55,11 @@ public class ArticleFacade {
 
     public ArticleInfo.Paginate loadBriefList(ArticleCommand.Paginate paginate) {
         Map<String, Object> resultMap = articleService.getArticleBriefList(paginate);
-        List<ArticleInfo.Brief> articles = (List<ArticleInfo.Brief>) resultMap.get("data");
+        List<ArticleInfo.Brief> articles = (List<ArticleInfo.Brief>) resultMap.get("briefs");
         articles.forEach(article -> injectArticleInfo(article));
 
         return ArticleInfo.Paginate.builder()
-                .data(articles)
+                .briefs(articles)
                 .total((Long) resultMap.get("total"))
                 .pages((Long) resultMap.get("pages"))
                 .current((Long) resultMap.get("current"))

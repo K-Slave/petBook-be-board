@@ -29,6 +29,11 @@ dependencies {
     // 각종 Java 간편 기능들을 구현하기 위한 Utility
     implementation 'com.google.guava:guava:28.2-jre'
     implementation 'org.apache.commons:commons-lang3:3.9'
+
+    // Swagger UI 관련 라이브러리
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
 }
 
 tasks.named('test') {

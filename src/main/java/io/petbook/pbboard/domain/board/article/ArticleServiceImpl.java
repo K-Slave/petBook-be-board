@@ -26,7 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
         Map<String, Object> pgnMap = articleReader.getList(paginate);
         List<Article> articles = (List<Article>) pgnMap.get("data");
         List<ArticleInfo.Brief> articleBriefs = articles.stream().map(ArticleInfo.Brief::toInfo).collect(Collectors.toList());
-        pgnMap.put("data", articleBriefs);
+        pgnMap.put("briefs", articleBriefs);
         return pgnMap;
     }
 

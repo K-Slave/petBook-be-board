@@ -2,6 +2,7 @@ package io.petbook.pbboard.common.response;
 
 import com.google.common.collect.Lists;
 import io.petbook.pbboard.common.exception.BaseException;
+import io.petbook.pbboard.common.exception.EntityNotFoundException;
 import io.petbook.pbboard.common.interceptor.CommonHttpRequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.ClientAbortException;
@@ -97,5 +98,21 @@ public class CommonControllerAdvice {
         } else {
             return CommonResponse.fail(ErrorCode.COMMON_INVALID_PARAMETER.getErrorMsg(), ErrorCode.COMMON_INVALID_PARAMETER.name());
         }
+    }
+
+    /**
+     * http status: 404 AND result: FAIL
+     * Entity Not Found 에러
+     * TODO: Front 단에서 엔티티가 없는 경우 204 vs 404 협의할 것.
+     * @param e
+     * @return
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = {EntityNotFoundException.class})
+    public CommonResponse entityNotFoundException(EntityNotFoundException e) {
+        String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
+        log.warn("[BaseException] eventId = {}, errorMsg = {}", eventId, NestedExceptionUtils.getMostSpecificCause(e).getMessage());
+        return CommonResponse.fail(e.getMessage(), e.getErrorCode().name());
     }
 }
