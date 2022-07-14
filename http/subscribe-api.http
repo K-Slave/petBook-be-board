@@ -1,0 +1,42 @@
+### 게시판 카테고리 등록
+POST http://localhost:8081/pb-board/api/v1/categories
+Content-Type: application/json
+
+{
+  "title": "카테고리",
+  "userToken": "[사용자토큰]",
+  "visible": true
+}
+
+> {%
+//response handler
+client.global.set("categoryToken", response.body.data.token);
+client.log(client.global.get("categoryToken"));
+%}
+
+### 게시물 등록
+POST http://localhost:8081/pb-board/api/v1/articles
+Content-Type: application/json
+
+{
+  "title": "Lorem ipsum dolor sit amet",
+  "context": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat tincidunt felis, a rutrum lectus luctus eu.",
+  "userToken": "[사용자토큰]",
+  "visible": true,
+  "categoryToken": "{{categoryToken}}"
+}
+
+> {%
+// [Kang] 제목이 Lorem ipsum 게시물에 대해서는 토큰을 따로 설정한다.
+client.global.set("articleToken", response.body.data.token);
+client.log(client.global.get("articleToken"));
+%}
+
+### 게시물 단일 조회 (1)
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
+
+### 게시물 단일 조회 (2)
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
+
+### 게시물 단일 조회 (3)
+GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}

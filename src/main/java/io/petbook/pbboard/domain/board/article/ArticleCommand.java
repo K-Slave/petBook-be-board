@@ -1,9 +1,5 @@
 package io.petbook.pbboard.domain.board.article;
 
-/**
- * [Kang] Article Writing Model
- */
-
 import io.petbook.pbboard.domain.board.category.Category;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
@@ -11,8 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
+/**
+ * [Kang] Article Writing Model
+ */
 public class ArticleCommand {
     @Getter
     @Builder

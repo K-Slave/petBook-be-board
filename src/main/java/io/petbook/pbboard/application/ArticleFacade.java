@@ -3,6 +3,8 @@ package io.petbook.pbboard.application;
 import io.petbook.pbboard.domain.board.article.ArticleCommand;
 import io.petbook.pbboard.domain.board.article.ArticleInfo;
 import io.petbook.pbboard.domain.board.article.ArticleService;
+import io.petbook.pbboard.domain.board.subscriber.SubscriberCommand;
+import io.petbook.pbboard.domain.board.subscriber.SubscriberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,8 @@ public class ArticleFacade {
 
     private final ArticleService articleService;
 
+    private final SubscriberService subscriberService;
+
     private void injectArticleInfo(ArticleInfo.Main article) {
         String token = article.getToken();
 
@@ -47,7 +51,7 @@ public class ArticleFacade {
         article.modifyByAccessor(
                 ArticleCommand.InfoAccessor.builder()
                         .likeCount(0L)
-                        .viewCount(0L)
+                        .viewCount(subscriberService.countByArticleToken(token))
                         .author("[작성자]")
                         .build()
         );
@@ -67,6 +71,11 @@ public class ArticleFacade {
     }
 
     public ArticleInfo.Detail loadDetailView(String token) {
+        // [Kang] 조회수 정보 추가 (TODO: 사용자 정보 존재 시, 토큰을 가져와 주입한다.)
+        subscriberService.createForAnonymous(
+            SubscriberCommand.Anonymous.builder().articleToken(token).build()
+        );
+
         ArticleInfo.Detail article = articleService.getArticleDetailInfo(token);
         injectArticleInfo(article);
         return article;
