@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  # Redis Instance For Local
+  pb-subscriber-local:
+    image: redis:alpine
+    container_name: pb-subs-db-inst-local
+    command: redis-server --port 6379
+    labels:
+      - "name=pb-subscriber"
+      - "mode=standalone"
+    ports:
+      - "6379:6379"

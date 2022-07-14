@@ -1,0 +1,21 @@
+# MySQL 동기화를 시도하기 위해 일부러 2 개의 인스턴스를 만들었음.
+version: "3.7"
+services:
+  # MySQL Instance For Local
+  pb-board-local:
+    image: mysql:8.0
+    container_name: pb-board-db-inst-local
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=pb-board
+      - MYSQL_ROOT_PASSWORD=1q2w3e4r5t^
+      - MYSQL_USER=kangdev9401
+      - MYSQL_PASSWORD=1q2w3e4r5t^
+      - TZ=UTC
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --lower_case_table_names=1
+    volumes:
+      - ./mysql:/var/lib/mysql

@@ -1,0 +1,24 @@
+# Redis 동기화를 시도하기 위해 일부러 2 개의 인스턴스를 만들었음.
+version: '3.7'
+services:
+  # Redis Instance No.01
+  pb-subscriber-01:
+    image: redis:alpine
+    container_name: pb-subs-db-inst-01
+    command: redis-server --port 6379
+    labels:
+      - "name=pb-subscriber"
+      - "mode=standalone"
+    ports:
+      - "16379:6379"
+
+  # Redis Instance No.02
+  pb-subscriber-02:
+    image: redis:alpine
+    container_name: pb-subs-db-inst-02
+    command: redis-server --port 6379
+    labels:
+      - "name=pb-subscriber"
+      - "mode=standalone"
+    ports:
+      - "26379:6379"
