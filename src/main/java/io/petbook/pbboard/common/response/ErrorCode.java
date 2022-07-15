@@ -12,7 +12,9 @@ public enum ErrorCode {
     COMMON_ILLEGAL_STATUS("잘못된 상태값입니다."),
     COMMON_INVALID_TOKEN("일치하지 않는 데이터 토큰입니다."),
 
-    INVALID_SUBSCRIBE_EXCEPTION("유효하지 않는 조회 시도입니다.");
+    INVALID_SUBSCRIBE_EXCEPTION("유효하지 않는 조회 시도입니다."),
+
+    INTERNAL_REFERENCE_EXCEPTION("비즈니스 로직의 참조가 잘못 되었습니다.");
 
     // TODO: 요청 및 응답에 대해 필요한 임의 오류 코드 생성 필요.
 
