@@ -21,6 +21,7 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
+        // [Kang] Jedis < Lettuce 라던데 무슨 차이일까?
         return new LettuceConnectionFactory(
             redisProperties.getHost(),
             redisProperties.getPort()

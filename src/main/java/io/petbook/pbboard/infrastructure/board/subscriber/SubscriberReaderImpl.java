@@ -4,6 +4,7 @@ import io.petbook.pbboard.domain.board.subscriber.Subscriber;
 import io.petbook.pbboard.domain.board.subscriber.SubscriberReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class SubscriberReaderImpl implements SubscriberReader {
 
     @Override
     public long countByArticleToken(String articleToken) {
-        if (articleToken == null) {
+        if (StringUtils.isEmpty(articleToken)) {
             return 0L;
         } else {
             // [Kang] Repository 인터페이스에 Method Query 로 만들면 작동이 안 된다.

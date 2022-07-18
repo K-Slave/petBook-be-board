@@ -27,7 +27,7 @@ public class Subscriber implements Serializable {
     private static final String ANONYMOUS_PREFIX = "anms_";
 
     /**
-     * [Kang] 접속자 로그 ID (이는 null 로 넣어도 임의의 값이 저장된다.)
+     * [Kang] 조회수 ID (이는 null 로 넣어도 임의의 값이 저장된다.)
      */
     @Id
     private String id;
@@ -40,6 +40,7 @@ public class Subscriber implements Serializable {
     /**
      * [Kang] 조회 게시물 토큰
      * [Kang] JPA 메소드로 쿼링 하려면 Index 데이터여야 한다.
+     * [Kang] @Indexed 어노테이션을 붙이면, Set 자료구조를 기반으로 Redis Hash 데이터 값을 관리한다. 그래서 굳이 자료구조를 불러오지 않더라도 조회수를 구현하면 메모리가 많이 들지 않을 것이다!
      */
     @Indexed
     private String articleToken;

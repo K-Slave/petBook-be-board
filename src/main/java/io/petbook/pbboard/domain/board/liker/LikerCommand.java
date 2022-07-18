@@ -1,25 +1,14 @@
-package io.petbook.pbboard.domain.board.subscriber;
+package io.petbook.pbboard.domain.board.liker;
 
-import io.petbook.pbboard.domain.board.category.Category;
+import io.petbook.pbboard.domain.board.subscriber.Subscriber;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 
 /**
- * [Kang] Subscriber Writing Model
+ * [Kang] Liker Writing Model
  */
-public class SubscriberCommand {
-    @Getter
-    @Builder
-    public static class Anonymous {
-        @ApiModelProperty(value = "게시물 토큰", required = true, example = "atcl_abcde12345")
-        private final String articleToken;
-
-        public Subscriber toEntity() {
-            return new Subscriber(articleToken);
-        }
-    }
-
+public class LikerCommand {
     @Getter
     @Builder
     public static class Accessor {
