@@ -69,7 +69,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public ArticleInfo.DeleteProcStatus deleteCategoryInfo(String token) {
+    public ArticleInfo.DeleteProcStatus deleteArticleInfo(String token) {
         Article article = articleReader.getEntity(token);
         article.deleted();
         return ArticleInfo.DeleteProcStatus.builder().completed(true).build();

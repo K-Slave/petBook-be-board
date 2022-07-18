@@ -37,16 +37,15 @@ public class ArticleFacade {
     private void injectArticleInfo(ArticleInfo.Main article) {
         String token = article.getToken();
 
-        // [Kang] 좋아요, 조회수 같은 경우는 MSA 구조로 독립 시켜 카운팅 전용 서버를 만들어 개선할 예정이다.
-
         // [Kang] 좋아요 수 호출
         // LikerInfo.Main likerInfo = likerInfoService.findByArticleToken(token);
 
-        // [Kang] 조회 수 호출
-        // ViewerInfo.Main viewerInfo = viewerInfoService.findByArticleToken(token);
-
         // [Kang] 작성자 호출
         // UserInfo.Main userInfo = userInfoService.findByToken(article.getUserToken());
+
+        // [Kang] 키워드 호출
+
+        // [Kang] 파일 호출
 
         article.modifyByAccessor(
                 ArticleCommand.InfoAccessor.builder()
@@ -70,13 +69,58 @@ public class ArticleFacade {
                 .build();
     }
 
-    public ArticleInfo.Detail loadDetailView(String token) {
-        // [Kang] 조회수 정보 추가 (TODO: 사용자 정보 존재 시, 토큰을 가져와 주입한다.)
-        subscriberService.createForAnonymous(
-            SubscriberCommand.Anonymous.builder().articleToken(token).build()
-        );
+    public List<ArticleInfo.Main> loadArticleInfoIsDeleted() {
+        List<ArticleInfo.Main> articles = articleService.getArticleInfoIsDeleted();
+        articles.forEach(article -> injectArticleInfo(article));
+        return articles;
+    }
 
+    public ArticleInfo.Detail loadDetailView(String token) {
         ArticleInfo.Detail article = articleService.getArticleDetailInfo(token);
+
+        if (!article.getDeleted()) {
+            // [Kang] 조회수 정보 추가 (TODO: 사용자 정보 존재 시, 토큰을 가져와 주입한다.)
+            subscriberService.createForAnonymous(
+                SubscriberCommand.Anonymous.builder().articleToken(token).build()
+            );
+        }
+
+        injectArticleInfo(article);
+        return article;
+    }
+
+    public ArticleInfo.Brief createArticleInfo(ArticleCommand.Main command) {
+        ArticleInfo.Brief article = articleService.createArticleInfo(command);
+        injectArticleInfo(article);
+        return article;
+    }
+
+    public ArticleInfo.Brief modifyArticleInfo(ArticleCommand.Modifier command) {
+        ArticleInfo.Brief article = articleService.modifyArticleInfo(command);
+        injectArticleInfo(article);
+        return article;
+    }
+
+    public ArticleInfo.DeleteProcStatus deleteArticleInfo(String token) {
+        ArticleInfo.DeleteProcStatus article = articleService.deleteArticleInfo(token);
+        // [Kang] TODO: Subscribe Delete By 연동 필요할까?
+        return article;
+    }
+
+    public ArticleInfo.Brief restoreArticleInfo(String token) {
+        ArticleInfo.Brief article = articleService.restoreArticleInfo(token);
+        injectArticleInfo(article);
+        return article;
+    }
+
+    public ArticleInfo.Main enableArticleInfo(String token) {
+        ArticleInfo.Main article = articleService.enableArticleInfo(token);
+        injectArticleInfo(article);
+        return article;
+    }
+
+    public ArticleInfo.Main disableArticleInfo(String token) {
+        ArticleInfo.Main article = articleService.disableArticleInfo(token);
         injectArticleInfo(article);
         return article;
     }

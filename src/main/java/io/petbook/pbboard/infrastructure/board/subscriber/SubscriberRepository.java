@@ -10,5 +10,6 @@ public interface SubscriberRepository extends CrudRepository<Subscriber, String>
     Iterable<Subscriber> findByArticleToken(String articleToken);
 
     // [Kang] 게시물 토큰으로 조회수를 가져온다.
+    // [Kang] 이거 안 됨. Redis Operation For Sets 를 사용해서 진행해야 한다.
     long countByArticleToken(String articleToken);
 }

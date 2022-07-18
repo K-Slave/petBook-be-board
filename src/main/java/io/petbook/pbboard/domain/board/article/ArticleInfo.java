@@ -1,5 +1,6 @@
 package io.petbook.pbboard.domain.board.article;
 
+import io.petbook.pbboard.domain.AbstractEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -28,8 +29,10 @@ public class ArticleInfo {
         private final String authorToken;
         private String author;
 
-        private Long viewCount; // [Kang] 아직 조회수 설계에 대해 고려를 안 했음.
+        private Long viewCount; // [Kang] 조회수 설계 진행 이후, Facade 로직에서 처리 중.
         private Long likeCount; // [Kang] 아직 좋아요 설계에 대해 고려를 안 했음.
+
+        private Boolean deleted; // [Kang] 데이터 삭제 처리 이후 조회수 처리 기능 때문으로 인한 필드 추가.
 
         public void modifyByAccessor(ArticleCommand.InfoAccessor accessor) {
             this.author = accessor.getAuthor();
@@ -53,6 +56,7 @@ public class ArticleInfo {
                     .createdAt(article.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                     .viewCount(0L)
                     .likeCount(0L)
+                    .deleted(article.getCrudStatus() == AbstractEntity.CrudStatus.DELETED)
                     .build();
         }
     }
@@ -78,6 +82,7 @@ public class ArticleInfo {
                     .updatedAt(article.getUpdatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                     .viewCount(0L)
                     .likeCount(0L)
+                    .deleted(article.getCrudStatus() == AbstractEntity.CrudStatus.DELETED)
                     .build();
         }
     }

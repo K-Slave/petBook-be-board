@@ -38,5 +38,25 @@ GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 ### 게시물 단일 조회 (2)
 GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
 
-### 게시물 단일 조회 (3)
+### 게시물 삭제 -> 조회 데이터 삭제 여부는 조금 더 생각해보자.
+DELETE http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
+
+### 게시물 단일 조회 (게시물 나오는 여부 체크)
+GET http://localhost:8081/pb-board/api/v1/articles/deleted
+
+### 게시물 복구 -> 조회 데이터가 다시 나오는지?
+PUT http://localhost:8081/pb-board/api/v1/articles/restore/{{articleToken}}
+
+### 게시물 단일 조회 (복구 이후 나오는 여부 체크)
 GET http://localhost:8081/pb-board/api/v1/articles/{{articleToken}}
+
+### 게시물 수정
+PUT http://localhost:8081/pb-board/api/v1/articles
+Content-Type: application/json
+
+{
+  "token": "{{articleToken}}",
+  "title": "Article Test",
+  "context": "Article Test",
+  "visible": true
+}
