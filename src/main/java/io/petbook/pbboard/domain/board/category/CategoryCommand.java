@@ -1,5 +1,6 @@
 package io.petbook.pbboard.domain.board.category;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +12,10 @@ import lombok.Getter;
 public class CategoryCommand {
     @Getter
     @Builder
+    @ApiModel(
+        value = "CategoryCommand.Main",
+        description = "카테고리를 등록하기 위한 Post Body 데이터."
+    )
     public static class Main {
         @ApiModelProperty(value = "카테고리 제목", required = true, example = "노하우 게시판")
         private final String title;
@@ -34,6 +39,10 @@ public class CategoryCommand {
 
     @Getter
     @Builder
+    @ApiModel(
+        value = "CategoryCommand.Modifier",
+        description = "카테고리를 수정하기 위한 Put Body 데이터."
+    )
     public static class Modifier {
         @ApiModelProperty(value = "카테고리 토큰", required = true, example = "ctgy_abcde12345")
         private final String token;

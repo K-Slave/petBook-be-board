@@ -1,6 +1,7 @@
 package io.petbook.pbboard.domain.board.article;
 
 import io.petbook.pbboard.domain.board.category.Category;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import lombok.Builder;
@@ -13,6 +14,10 @@ import lombok.RequiredArgsConstructor;
 public class ArticleCommand {
     @Getter
     @Builder
+    @ApiModel(
+        value = "ArticleCommand.Main",
+        description = "게시물을 등록하기 위한 Post Body 데이터."
+    )
     public static class Main {
         @ApiModelProperty(value = "게시물 제목", required = true, example = "게시글을 등록합니다.")
         private final String title;
@@ -31,11 +36,11 @@ public class ArticleCommand {
 
         public Article toEntity(Category category) {
             Article article = Article.builder()
-                                .title(title)
-                                .context(context)
-                                .userToken(userToken)
-                                .category(category)
-                                .build();
+                    .title(title)
+                    .context(context)
+                    .userToken(userToken)
+                    .category(category)
+                    .build();
 
             if (visible) {
                 article.enable();
@@ -131,6 +136,10 @@ public class ArticleCommand {
      */
     @Getter
     @Builder
+    @ApiModel(
+        value = "ArticleCommand.Modifier",
+        description = "게시물을 수정하기 위한 Put Body 데이터."
+    )
     public static class Modifier {
         @ApiModelProperty(value = "게시물 토큰", required = true, example = "atcl_abcde12345")
         private final String token;

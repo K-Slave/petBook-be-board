@@ -21,11 +21,12 @@ spring:
     properties:
       hibernate.format_sql: ${props.spring.jpa.properties.hibernate.format_sql}
 
-  # Redis 연동
+  # Redis 연동 (URL 은 Lettuce 에서 비밀번호 필드를 인식하지 않는다 하더라.)
   redis:
     host: ${props.spring.redis.host}
     port: ${props.spring.redis.port}
     password: ${props.spring.redis.password}
+    url: ${props.spring.redis.url}
 
 server:
   port: ${props.server.port}

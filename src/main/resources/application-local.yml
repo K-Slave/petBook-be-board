@@ -24,6 +24,7 @@ props:
       host: localhost
       port: 6379
       password:
+      url: redis://localhost:6379
 
   # 서블릿 작동 환경 설정
   server:
