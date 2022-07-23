@@ -28,7 +28,10 @@ public class RedisConfig {
         // [Kang] 비밀번호 유무에 따른 Redis 설정 주입 요망.
         if (StringUtils.isNotEmpty(redisProperties.getPassword())) {
             RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+            redisStandaloneConfiguration.setUsername(redisProperties.getUsername());
             redisStandaloneConfiguration.setPassword(redisProperties.getPassword());
+            redisStandaloneConfiguration.setHostName(redisProperties.getHost());
+            redisStandaloneConfiguration.setPort(redisProperties.getPort());
             return new LettuceConnectionFactory(redisStandaloneConfiguration);
         } else {
             return new LettuceConnectionFactory(
