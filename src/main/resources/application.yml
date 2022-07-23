@@ -25,6 +25,7 @@ spring:
   redis:
     host: ${props.spring.redis.host}
     port: ${props.spring.redis.port}
+    username: ${props.spring.redis.username}
     password: ${props.spring.redis.password}
     url: ${props.spring.redis.url}
 

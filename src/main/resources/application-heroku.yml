@@ -24,6 +24,7 @@ props:
     redis:
       host: ${REDISCLOUD_HOST}
       port: ${REDISCLOUD_PORT}
+      username: ${REDISCLOUD_USERNAME}
       password: ${REDISCLOUD_PASSWORD}
       url: ${REDISCLOUD_URL}
 

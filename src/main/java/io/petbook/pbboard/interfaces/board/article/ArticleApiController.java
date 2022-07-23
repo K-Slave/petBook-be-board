@@ -3,6 +3,7 @@ package io.petbook.pbboard.interfaces.board.article;
 import io.petbook.pbboard.application.ArticleFacade;
 import io.petbook.pbboard.common.response.CommonResponse;
 import io.petbook.pbboard.domain.board.article.ArticleCommand;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
