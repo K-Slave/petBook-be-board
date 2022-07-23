@@ -25,7 +25,7 @@ props:
       host: ${REDISCLOUD_HOST}
       port: ${REDISCLOUD_PORT}
       password: ${REDISCLOUD_PASSWORD}
-      url: redis://${REDISCLOUD_PASSWORD}@${REDISCLOUD_HOST}:${REDISCLOUD_PORT}
+      url: ${REDISCLOUD_URL}
 
   # 서블릿 작동 환경 설정
   server:
