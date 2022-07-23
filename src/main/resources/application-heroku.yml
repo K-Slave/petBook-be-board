@@ -1,0 +1,38 @@
+### heroku 프로필 환경 설정
+props:
+  spring:
+    # DataSource
+    datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:~/petbook-test
+      username: sa
+      password:
+
+    # H2
+    h2:
+      console:
+        enabled: true
+        path: /db_console
+
+    # JPA
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      generate-ddl: true
+      show-sql: true
+      database-platform: org.hibernate.dialect.H2Dialect
+      properties:
+        hibernate.format_sql: false
+
+    # Redis 연동
+    redis:
+      host: localhost
+      port: 6379
+      password:
+
+  # 서블릿 작동 환경 설정
+  server:
+    port: 8081
+    servlet:
+      context-path: /pb-board
