@@ -1,19 +1,14 @@
 ### heroku 프로필 환경 설정
+### Heroku 에서 Config Vars 를 사용해서 DB 변수 설정을 해두면 배포 연동 설정을 보호하는데 더 도움이 된다.
 props:
   spring:
     # DataSource
     datasource:
       type: com.zaxxer.hikari.HikariDataSource
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:~/petbook-test
-      username: sa
-      password:
-
-    # H2
-    h2:
-      console:
-        enabled: true
-        path: /db_console
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${JAWSDB_HOST}:${JAWSDB_PORT}/${JAWSDB_DATABASE}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+      username: ${JAWSDB_USERNAME}
+      password: ${JAWSDB_PASSWORD}
 
     # JPA
     jpa:
@@ -21,15 +16,15 @@ props:
         ddl-auto: create-drop
       generate-ddl: true
       show-sql: true
-      database-platform: org.hibernate.dialect.H2Dialect
+      database-platform: org.hibernate.dialect.MySQL8Dialect
       properties:
         hibernate.format_sql: false
 
     # Redis 연동
     redis:
-      host: localhost
-      port: 6379
-      password:
+      host: ${REDISCLOUD_HOST}
+      port: ${REDISCLOUD_PORT}
+      password: ${REDISCLOUD_PASSWORD}
 
   # 서블릿 작동 환경 설정
   server:

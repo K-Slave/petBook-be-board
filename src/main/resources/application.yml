@@ -1,7 +1,7 @@
 spring:
   # application-OOOOO.yml 에서 작동 환경을 불러온다.
   profiles:
-    active: local
+    active: heroku
 
   # DataSource
   datasource:
@@ -10,12 +10,6 @@ spring:
     url: ${props.spring.datasource.url}
     username: ${props.spring.datasource.username}
     password: ${props.spring.datasource.password}
-
-  # H2
-  h2:
-    console:
-      enabled: ${props.spring.h2.console.enabled}
-      path: ${props.spring.h2.console.path}
 
   # JPA
   jpa:
